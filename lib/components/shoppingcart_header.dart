@@ -21,6 +21,19 @@ class _ShoppingCartHeaderState extends State<ShoppingCartHeader> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      children: [
+        _buildHeaderPic(),
+        _buildHeaderSelector(),
+      ],
+    );
+  }
+
+  _buildHeaderPic() {
+    return SizedBox();
+  }
+
+  _buildHeaderSelector() {
+    return SizedBox();
   }
 }
