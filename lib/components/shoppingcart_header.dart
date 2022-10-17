@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:shoppingcart/constants.dart';
 
 class ShoppingCartHeader extends StatefulWidget {
   const ShoppingCartHeader({Key? key}) : super(key: key);
@@ -30,10 +32,53 @@ class _ShoppingCartHeaderState extends State<ShoppingCartHeader> {
   }
 
   _buildHeaderPic() {
-    return SizedBox();
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: AspectRatio(
+          aspectRatio: 5 / 3,
+          child: Image.asset(
+            selectedPic[selectedId],
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    );
   }
 
   _buildHeaderSelector() {
-    return SizedBox();
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        _buildHeaderSelectorButton(0, Icons.directions_bike),
+        _buildHeaderSelectorButton(1, Icons.motorcycle),
+        _buildHeaderSelectorButton(2, CupertinoIcons.car_detailed),
+        _buildHeaderSelectorButton(3, CupertinoIcons.airplane),
+      ],
+    );
+  }
+
+  Widget _buildHeaderSelectorButton(int id, IconData micon) {
+    return Container(
+      width: 70,
+      height: 70,
+      decoration: BoxDecoration(
+        color: id == selectedId ? kAccentColor : kSecondaryColor,
+        // 색상 앞에 k를 붙여서 찾기 쉽게 만듬 (컨벤션, 약속)
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: IconButton(
+        onPressed: () {
+          setState(() {
+            selectedId = id;
+          });
+        },
+        icon: Icon(
+          micon,
+          color: Colors.black,
+        ),
+      ),
+    );
   }
 }
